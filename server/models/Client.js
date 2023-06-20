@@ -1,4 +1,6 @@
-//mongoose schema is not related to graphql schema. The mongoose layer (object data mapper layer) lives on top of the database. This schema includes fields for our database collections. On top of the mongoose layer is graphql schema layer.
+// Create a mongoose schema. Defines how the data will look like in the MongoDB
+// Mongoose schema is not related to graphql schema.The mongoose layer  (object data mapper layer) lives on top of the database.This schema includes fields for our database collections.On top of the mongoose layer is graphql schema layer.
+
 const mongoose = require('mongoose')
 
 const ClientSchema = new mongoose.Schema({

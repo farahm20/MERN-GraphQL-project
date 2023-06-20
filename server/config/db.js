@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+//connecting to MongoDB atlas
 //async because mongoose functions return promises
 const connectDB = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URI)

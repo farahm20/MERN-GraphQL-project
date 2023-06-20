@@ -14,7 +14,6 @@ export default function AddProjectModal() {
 
   //Get cleints for select
   const { loading, error, data } = useQuery(GET_CLIENTS)
-  console.log(data)
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, status, clientId },

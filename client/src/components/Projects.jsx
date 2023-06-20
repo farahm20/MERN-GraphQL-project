@@ -7,7 +7,6 @@ export default function Projects() {
   //useQuery hook to get the data from the query.
 
   const { loading, error, data } = useQuery(GET_PROJECTS)
-  console.log(data)
   if (loading) return <Spinner />
   if (error) return <p>Something Went Wrong</p>
 

@@ -8,16 +8,17 @@ const {
   GraphQLEnumType,
 } = require('graphql')
 
-//mongoose models
+//Birng in Mongoose models to query the DB.
 const Project = require('../models/Project')
 const Client = require('../models/Client')
 
-const { projects, clients } = require('../sampleData')
+// const { projects, clients } = require('../sampleData')
 
 //define the Project type
 const ProjectType = new GraphQLObjectType({
   name: 'Project',
   fields: () => ({
+    //function that returns an object
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -97,7 +98,7 @@ const mutation = new GraphQLObjectType({
     addClient: {
       type: ClientType,
       args: {
-        name: { type: GraphQLNonNull(GraphQLString) },
+        name: { type: GraphQLNonNull(GraphQLString) }, //GraphQLNonNull to disable null entries.
         email: { type: GraphQLNonNull(GraphQLString) },
         phone: { type: GraphQLNonNull(GraphQLString) },
       },
@@ -194,6 +195,28 @@ const mutation = new GraphQLObjectType({
               name: args.name,
               description: args.description,
               status: args.status,
+            },
+          },
+          { new: true },
+        )
+      },
+    },
+    updateClient: {
+      type: ClientType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Client.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              phone: args.phone,
             },
           },
           { new: true },
